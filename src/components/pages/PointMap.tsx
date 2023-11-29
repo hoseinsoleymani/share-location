@@ -3,7 +3,7 @@ import { useLocationStore } from '../../store/store';
 import { MapContainer } from '../shared';
 import { Marker } from '../shared';
 import { LatLngTuple } from 'leaflet';
-import { FormGroup } from 'components/shared/FormGroup/FormGroup';
+import { FormGroup } from '../shared/FormGroup/FormGroup';
 
 export const PointMap = () => {
   const positions = useLocationStore((state) => state.position);
