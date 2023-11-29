@@ -6,7 +6,7 @@ interface Location {
   name: string;
   position: LatLngTuple[];
   type: string;
-  logo: ImageListType[];
+  logo: any[];
 }
 
 interface LocationState extends Pick<Location, 'position'> {
