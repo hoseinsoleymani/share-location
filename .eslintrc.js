@@ -5,7 +5,7 @@ module.exports = init({
   modules: {
     auto: true,
     react: true,
-    next: true,
+    next: false,
     typescript: {
       parserProject: './tsconfig.json',
       resolverProject: './tsconfig.json',
