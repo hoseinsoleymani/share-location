@@ -1,5 +1,6 @@
 import React from 'react';
-import ImageUploading, { ImageListType } from 'react-images-uploading';
+import type { ImageListType } from 'react-images-uploading';
+import ImageUploading from 'react-images-uploading';
 
 interface UploaderProps {
   onChange: (

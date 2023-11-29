@@ -1,6 +1,7 @@
-import { Uploader } from '../shared';
-import { ImageListType } from 'react-images-uploading';
 import { useFormContext } from 'react-hook-form';
+import type { ImageListType } from 'react-images-uploading';
+
+import { Uploader } from '../shared';
 import { FormGroup } from '../shared/FormGroup/FormGroup';
 
 export const UploadLogo = () => {

@@ -1,4 +1,5 @@
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+
 import { Label } from '../Label/Label';
 
 interface FormGroupProps {
@@ -10,7 +11,7 @@ export const FormGroup = ({
   label,
 }: PropsWithChildren<FormGroupProps>) => {
   return (
-    <div className="flex gap-4 flex-col">
+    <div className="flex flex-col gap-4">
       <Label>{label}</Label>
       {children}
     </div>

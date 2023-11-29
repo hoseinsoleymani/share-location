@@ -1,7 +1,8 @@
-import { MapPresentation } from './components/pages';
 import { FormProvider, useForm } from 'react-hook-form';
 
-function App() {
+import { MapPresentation } from './components/pages';
+
+const App = () => {
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -11,13 +12,13 @@ function App() {
 
   return (
     <main>
-      <section className="flex items-center justify-center min-h-screen">
+      <section className="flex min-h-screen items-center justify-center">
         <FormProvider {...methods}>
           <MapPresentation />
         </FormProvider>
       </section>
     </main>
   );
-}
+};
 
 export default App;

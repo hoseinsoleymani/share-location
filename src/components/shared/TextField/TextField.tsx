@@ -63,7 +63,7 @@ const TextFieldDescription = ({
   visuallyShow,
 }: TextFieldDescriptionProps) => {
   return description ? (
-    <p id={id} className={visuallyShow ? 'sr-only' : 'text-sm text-shades-30'}>
+    <p id={id} className={visuallyShow ? 'sr-only' : 'text-shades-30 text-sm'}>
       {description}
     </p>
   ) : null;
@@ -78,7 +78,7 @@ const TextFieldLabel = ({ label, textFieldId }: TextFieldLabelProps) => {
   return (
     <label
       htmlFor={textFieldId}
-      className="absolute -top-7 left-0 z-10 -mt-px inline-block bg-primary-white text-sm font-medium text--90"
+      className="bg-primary-white text--90 absolute -top-7 left-0 z-10 -mt-px inline-block text-sm font-medium"
     >
       {label}
     </label>
@@ -92,7 +92,7 @@ interface TextFieldErrorMessageProps {
 
 const TextFieldErrorMessage = ({ id, message }: TextFieldErrorMessageProps) => {
   return (
-    <span id={id} className="ml-3 text-sm text-red-60">
+    <span id={id} className="text-red-60 ml-3 text-sm">
       {message}
     </span>
   );
@@ -107,7 +107,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       <textarea
         ref={ref}
         placeholder={placeholder}
-        className="relative mt-6 h-28 w-full rounded-lg border border-shades-30 py-3.5 pl-4 shadow-sm outline-none focus-within:ring-1 focus-within:ring-blue-100 focus:border-blue-100"
+        className="border-shades-30 relative mt-6 h-28 w-full rounded-lg border py-3.5 pl-4 shadow-sm outline-none focus-within:ring-1 focus-within:ring-blue-100 focus:border-blue-100"
         {...props}
       />
     );
@@ -147,10 +147,10 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const textFieldId = `textField-${id}`;
     return (
       <div
-        className={`relative h-10 mt-6 rounded-lg border border-shades-20 focus-within:ring-1 focus:border-blue-100 focus:ring-blue-100 ${
+        className={`border-shades-20 relative mt-6 h-10 rounded-lg border focus-within:ring-1 focus:border-blue-100 focus:ring-blue-100 ${
           invalid
-            ? 'border border-red-60 bg-red-70/5 hover:bg-red-100'
-            : 'border border-shades-20 bg-primary-white'
+            ? 'border-red-60 bg-red-70/5 border hover:bg-red-100'
+            : 'border-shades-20 bg-primary-white border'
         } ${className ?? ''}`}
       >
         {label ? (
@@ -160,7 +160,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         <div className="relative h-full w-full">
           {StartIcon ? (
             <StartIcon
-              className="absolute left-[10px] top-1/2 w-5 -translate-y-1/2 text-shades-20"
+              className="text-shades-20 absolute left-[10px] top-1/2 w-5 -translate-y-1/2"
               aria-label="start icon"
             />
           ) : null}

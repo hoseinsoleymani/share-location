@@ -1,7 +1,8 @@
 import { Slot } from '@radix-ui/react-slot';
-import { mergeClassNames } from '../../../helpers';
 import type { ButtonHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
+
+import { mergeClassNames } from '../../../helpers';
 import type { SVGIcon } from '../../types';
 
 type ButtonVariant = 'primary' | 'secondary';

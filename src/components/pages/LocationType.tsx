@@ -1,5 +1,6 @@
-import { FormGroup } from '../shared/FormGroup/FormGroup';
 import { useFormContext } from 'react-hook-form';
+
+import { FormGroup } from '../shared/FormGroup/FormGroup';
 
 export const LocationType = () => {
   const { register } = useFormContext();

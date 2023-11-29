@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import React from 'react';
 
 export const Label = ({
   children,
@@ -6,7 +7,7 @@ export const Label = ({
 }: PropsWithChildren<React.LabelHTMLAttributes<HTMLLabelElement>>) => {
   return (
     <label
-      className="whitespace-nowrap inline-block bg-primary-white text-sm font-medium text-shades-90"
+      className="bg-primary-white text-shades-90 inline-block whitespace-nowrap text-sm font-medium"
       {...props}
     >
       {children}

@@ -1,4 +1,9 @@
+import type { LatLngTuple } from 'leaflet';
 import React, { useState } from 'react';
+import { useMapEvents } from 'react-leaflet';
+
+import type { Location } from '../../store/store';
+import { useLocationStore } from '../../store/store';
 import {
   Button,
   Dialog,
@@ -6,12 +11,24 @@ import {
   DialogTitle,
   MapContainer,
   Marker,
-  Popup,
+  Popup as LeafletPopup,
 } from '../shared';
-import { useLocationStore } from '../../store/store';
-import { LatLngTuple } from 'leaflet';
-import { useMapEvents } from 'react-leaflet';
 import { Form } from './Form';
+
+const Popup = ({ logo, name, type }: Omit<Location, 'position'>) => {
+  return (
+    <LeafletPopup closeButton>
+      <img src={logo[0].dataURL} alt={name} className="h-12 w-full" />
+      name: {name}
+      <br />
+      type: {type}
+      <div className="flex">
+        <Button variant="secondary">Close</Button>
+        <Button>Edit</Button>
+      </div>
+    </LeafletPopup>
+  );
+};
 
 const MapMarker = () => {
   const [showModal, setShowModal] = useState(false);
@@ -33,23 +50,14 @@ const MapMarker = () => {
       {locations.length !== 0
         ? locations.map(({ logo, name, position, type }) => (
             <Marker key={name} position={position[0]}>
-              <Popup closeButton>
-                <img src={logo[0].dataURL} className="w-full h-12" />
-                name: {name}
-                <br />
-                type: {type}
-                <div className="flex">
-                  <Button variant="secondary">Close</Button>
-                  <Button>Edit</Button>
-                </div>
-              </Popup>
+              <Popup logo={logo} name={name} type={type} />
             </Marker>
           ))
         : null}
 
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent>
-          <DialogTitle className="mt-0 mb-6">Share location</DialogTitle>
+          <DialogTitle className="mb-6 mt-0">Share location</DialogTitle>
 
           <Form />
         </DialogContent>
@@ -63,8 +71,8 @@ export const MapPresentation = () => {
 
   return (
     <MapContainer
-      className="w-screen h-screen"
-      center={positions[positions?.length - 1]}
+      className="h-screen w-screen"
+      center={positions[positions.length - 1]}
       zoom={13}
       scrollWheelZoom={false}
     >

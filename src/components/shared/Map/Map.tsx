@@ -1,17 +1,11 @@
-import {
-  Marker as LeafletMarker,
-  MarkerProps,
-  Popup as LeafletPopup,
-  PopupProps,
-} from 'react-leaflet';
-import {
-  MapContainer as LeafletMapContainer,
-  MapContainerProps,
-} from 'react-leaflet/MapContainer';
-import { TileLayer } from 'react-leaflet/TileLayer';
 import 'leaflet/dist/leaflet.css';
-import { PropsWithChildren, forwardRef } from 'react';
-import { Popup as P } from 'leaflet';
+
+import type { PropsWithChildren } from 'react';
+import type { MarkerProps, PopupProps } from 'react-leaflet';
+import { Marker as LeafletMarker, Popup as LeafletPopup } from 'react-leaflet';
+import type { MapContainerProps } from 'react-leaflet/MapContainer';
+import { MapContainer as LeafletMapContainer } from 'react-leaflet/MapContainer';
+import { TileLayer } from 'react-leaflet/TileLayer';
 
 interface MapProps extends MapContainerProps {}
 

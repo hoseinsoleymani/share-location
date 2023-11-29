@@ -1,8 +1,7 @@
-import { LatLngTuple } from 'leaflet';
-import { ImageListType } from 'react-images-uploading';
+import type { LatLngTuple } from 'leaflet';
 import { create } from 'zustand';
 
-interface Location {
+export interface Location {
   name: string;
   position: LatLngTuple[];
   type: string;

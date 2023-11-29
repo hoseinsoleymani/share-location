@@ -1,9 +1,10 @@
+import { useFormContext } from 'react-hook-form';
+
+import { useLocationStore } from '../../store/store';
 import { Button, DialogCloseButton, TextField } from '../shared';
 import { LocationType } from './LocationType';
-import { UploadLogo } from './UploadLogo';
-import { useLocationStore } from '../../store/store';
 import { PointMap } from './PointMap';
-import { useFormContext } from 'react-hook-form';
+import { UploadLogo } from './UploadLogo';
 
 export const Form = () => {
   const saveLocation = useLocationStore((state) => state.saveLocation);
@@ -15,7 +16,7 @@ export const Form = () => {
   });
 
   return (
-    <form onSubmit={submitForm} className="max-w-xl gap-y-5 flex flex-col">
+    <form onSubmit={submitForm} className="flex max-w-xl flex-col gap-y-5">
       <TextField {...register('name')} name="name" label="Location name:" />
 
       <PointMap />
@@ -25,7 +26,10 @@ export const Form = () => {
       <UploadLogo />
 
       <div className="flex justify-end gap-x-4 pt-10">
-        <DialogCloseButton className="text-blue-600 p-4">
+        <DialogCloseButton
+          onClick={() => reset()}
+          className="p-4 text-blue-600"
+        >
           Cancel
         </DialogCloseButton>
         <Button type="submit">Save location</Button>
