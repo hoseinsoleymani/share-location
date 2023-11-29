@@ -1,5 +1,6 @@
 import type { LatLngTuple } from 'leaflet';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { useMapEvents } from 'react-leaflet';
 
 import type { Location } from '../../store/store';
@@ -16,6 +17,16 @@ import {
 import { Form } from './Form';
 
 const Popup = ({ logo, name, type }: Omit<Location, 'position'>) => {
+  const [showModal, setShowModal] = useState(false);
+  const { setValue } = useFormContext();
+
+  const openModal = () => {
+    setShowModal(true);
+    setValue('name', name);
+    setValue('type', type);
+    setValue('logo', logo);
+  };
+
   return (
     <LeafletPopup closeButton>
       <img src={logo[0].dataURL} alt={name} className="h-12 w-full" />
@@ -24,8 +35,15 @@ const Popup = ({ logo, name, type }: Omit<Location, 'position'>) => {
       type: {type}
       <div className="flex">
         <Button variant="secondary">Close</Button>
-        <Button>Edit</Button>
+        <Button onClick={openModal}>Edit</Button>
       </div>
+      <Dialog open={showModal} onOpenChange={setShowModal}>
+        <DialogContent>
+          <DialogTitle className="mb-6 mt-0">Share location</DialogTitle>
+
+          <Form />
+        </DialogContent>
+      </Dialog>
     </LeafletPopup>
   );
 };
