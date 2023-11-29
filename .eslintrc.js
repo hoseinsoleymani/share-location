@@ -15,12 +15,6 @@ module.exports = init({
   rules: {
     'tailwindcss/no-custom-classname': 'warn',
     'import/extensions': 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
   },
   settings: {
     'import/parsers': {

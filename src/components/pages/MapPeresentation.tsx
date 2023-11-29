@@ -1,5 +1,5 @@
 import type { LatLngTuple } from 'leaflet';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useMapEvents } from 'react-leaflet';
 
@@ -65,13 +65,11 @@ const MapMarker = () => {
 
   return (
     <div>
-      {locations.length !== 0
-        ? locations.map(({ logo, name, position, type }) => (
-            <Marker key={name} position={position[0]}>
-              <Popup logo={logo} name={name} type={type} />
-            </Marker>
-          ))
-        : null}
+      {locations.map(({ logo, name, position, type }) => (
+        <Marker key={name} position={position[0]}>
+          <Popup logo={logo} name={name} type={type} />
+        </Marker>
+      ))}
 
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent>
