@@ -7,27 +7,35 @@ interface File {
 
 export interface Location {
   name: string;
-  position: LatLngTuple[];
+  positions: LatLngTuple[];
   type: string;
   logo: File[];
 }
 
-interface LocationState extends Pick<Location, 'position'> {
-  locations: Location[];
+interface LocationState extends Pick<Location, 'positions'> {
+  savedLocations: Location[];
   saveLocation: (logo: File[], name: string, type: string) => void;
   savePosition: (lat: number, lng: number) => void;
+  removeCurrentPosition: () => void;
 }
 
 export const useLocationStore = create<LocationState>((set) => ({
-  position: [[51.505, -0.09]],
-  locations: [],
+  positions: [[51.505, -0.09]],
+  savedLocations: [],
   saveLocation: (logo, name, type) =>
-    set(({ locations, position }) => ({
-      locations: [
-        ...locations,
-        { logo, name, position: [position[position.length - 1]], type },
+    set(({ savedLocations, positions }) => ({
+      savedLocations: [
+        ...savedLocations,
+        { logo, name, positions: [positions[positions.length - 1]], type },
       ],
     })),
   savePosition: (lat, lng) =>
-    set((state) => ({ position: [...state.position, [lat, lng]] })),
+    set((state) => ({ positions: [...state.positions, [lat, lng]] })),
+  removeCurrentPosition: () =>
+    set((state) => {
+      const positions = [...state.positions];
+      positions.pop();
+
+      return { positions };
+    }),
 }));

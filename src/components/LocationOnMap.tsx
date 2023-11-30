@@ -14,13 +14,15 @@ const MapMarkers = ({ positions }: { positions: LatLngTuple[] }) => {
 };
 
 export const LocationOnMap = () => {
-  const positions = useLocationStore((state) => state.position);
+  const positions = useLocationStore((state) => state.positions);
+
+  const lastPosition = positions[positions.length - 1];
 
   return (
     <FormGroup label="Location on map">
       <MapContainer
         className="h-[20rem] w-[30rem]"
-        center={positions[positions.length - 1]}
+        center={lastPosition}
         zoom={13}
         scrollWheelZoom={false}
       >

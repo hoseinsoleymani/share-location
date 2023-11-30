@@ -12,7 +12,7 @@ const LocationDetailsPopup = ({
   logo,
   name,
   type,
-}: Omit<Location, 'position'>) => {
+}: Omit<Location, 'positions'>) => {
   const [showModal, setShowModal] = useState(false);
   const { setValue } = useFormContext();
 
@@ -32,13 +32,13 @@ const LocationDetailsPopup = ({
       <div className="flex">
         <Button onClick={openModal}>Edit</Button>
       </div>
-      <ShareLocationPopup setShowModal={setShowModal} showModal={showModal} />
+      <ShareLocationPopup setShowPopup={setShowModal} showPopup={showModal} />
     </LeafletPopup>
   );
 };
 
 const MapMarkers = () => {
-  const locations = useLocationStore((state) => state.locations);
+  const locations = useLocationStore((state) => state.savedLocations);
 
   const [showModal, setShowModal] = useState(false);
   const savePosition = useLocationStore((state) => state.savePosition);
@@ -52,20 +52,20 @@ const MapMarkers = () => {
   });
 
   return (
-    <div>
-      {locations.map(({ logo, name, position, type }) => (
+    <>
+      {locations.map(({ logo, name, positions: position, type }) => (
         <Marker key={name} position={position[0]}>
           <LocationDetailsPopup logo={logo} name={name} type={type} />
         </Marker>
       ))}
 
-      <ShareLocationPopup setShowModal={setShowModal} showModal={showModal} />
-    </div>
+      <ShareLocationPopup setShowPopup={setShowModal} showPopup={showModal} />
+    </>
   );
 };
 
 export const MapPresentation = () => {
-  const positions: LatLngTuple[] = useLocationStore((prev) => prev.position);
+  const positions: LatLngTuple[] = useLocationStore((prev) => prev.positions);
 
   return (
     <MapContainer

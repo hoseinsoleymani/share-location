@@ -2,8 +2,6 @@ import { useLocationStore } from '@store/';
 import type { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { LocationType } from './LocationType';
-import { LocationOnMap } from './LocationOnMap';
 import {
   Button,
   Dialog,
@@ -12,10 +10,20 @@ import {
   DialogTitle,
   TextField,
 } from '../ui';
-import { UploadLocationLogo } from './UploadLocationLogo';
+import { LocationLogo } from './LocationLogo';
+import { LocationOnMap } from './LocationOnMap';
+import { LocationType } from './LocationType';
 
-export const ShareLocationForm = () => {
+interface ShareLocationFormProps {
+  closePopup: () => void;
+}
+
+export const ShareLocationForm = ({ closePopup }: ShareLocationFormProps) => {
   const saveLocation = useLocationStore((state) => state.saveLocation);
+  const removeCurrentPosition = useLocationStore(
+    (state) => state.removeCurrentPosition,
+  );
+
   const { register, handleSubmit, setError, reset } = useFormContext();
 
   const submitForm = handleSubmit(({ name, type, logo }) => {
@@ -24,6 +32,7 @@ export const ShareLocationForm = () => {
 
     saveLocation(logo, name, type);
     reset();
+    closePopup();
   });
 
   return (
@@ -34,11 +43,14 @@ export const ShareLocationForm = () => {
 
       <LocationType />
 
-      <UploadLocationLogo />
+      <LocationLogo />
 
       <div className="flex justify-end gap-x-4 pt-10">
         <DialogCloseButton
-          onClick={() => reset()}
+          onClick={() => {
+            reset();
+            removeCurrentPosition();
+          }}
           className="p-4 text-blue-600"
         >
           Cancel
@@ -50,20 +62,35 @@ export const ShareLocationForm = () => {
 };
 
 interface ShareLocationPopupProps {
-  showModal: boolean;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  showPopup: boolean;
+  setShowPopup: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ShareLocationPopup = ({
-  showModal,
-  setShowModal,
+  showPopup,
+  setShowPopup,
 }: ShareLocationPopupProps) => {
+  const { reset } = useFormContext();
+
+  const removeCurrentPosition = useLocationStore(
+    (state) => state.removeCurrentPosition,
+  );
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
-    <Dialog open={showModal} onOpenChange={setShowModal}>
-      <DialogContent>
+    <Dialog open={showPopup} onOpenChange={setShowPopup}>
+      <DialogContent
+        onInteractOutside={() => {
+          reset();
+          removeCurrentPosition();
+        }}
+      >
         <DialogTitle className="mb-6 mt-0">Share location</DialogTitle>
 
-        <ShareLocationForm />
+        <ShareLocationForm closePopup={closePopup} />
       </DialogContent>
     </Dialog>
   );
