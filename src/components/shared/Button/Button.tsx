@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 
 import { mergeClassNames } from '../../../helpers';
-import type { SVGIcon } from '../../../types';
+import type { SVGIcon } from '../../../type';
 
 type ButtonVariant = 'primary' | 'secondary';
 type ButtonSize = 'medium' | 'normal' | 'sm';

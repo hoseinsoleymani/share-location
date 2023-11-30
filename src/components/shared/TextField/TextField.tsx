@@ -1,4 +1,5 @@
 import { Slot } from '@radix-ui/react-slot';
+import type { SVGIcon } from '@type/';
 import type { InputHTMLAttributes, Ref } from 'react';
 import React, { isValidElement, useId } from 'react';
 
@@ -8,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorId: string;
   hasStartIcon?: boolean;
   hasEndIcon?: boolean;
-  ref: Ref<any>;
+  ref: Ref<HTMLInputElement>;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -63,7 +64,7 @@ const TextFieldDescription = ({
   visuallyShow,
 }: TextFieldDescriptionProps) => {
   return description ? (
-    <p id={id} className={visuallyShow ? 'sr-only' : 'text-shades-30 text-sm'}>
+    <p id={id} className={visuallyShow ? 'sr-only' : ' text-sm'}>
       {description}
     </p>
   ) : null;
@@ -78,7 +79,7 @@ const TextFieldLabel = ({ label, textFieldId }: TextFieldLabelProps) => {
   return (
     <label
       htmlFor={textFieldId}
-      className="bg-primary-white text--90 absolute -top-7 left-0 z-10 -mt-px inline-block text-sm font-medium"
+      className="absolute -top-7 left-0 z-10 -mt-px inline-block text-sm font-medium"
     >
       {label}
     </label>
@@ -92,7 +93,7 @@ interface TextFieldErrorMessageProps {
 
 const TextFieldErrorMessage = ({ id, message }: TextFieldErrorMessageProps) => {
   return (
-    <span id={id} className="text-red-60 ml-3 text-sm">
+    <span id={id} className="ml-3 text-sm">
       {message}
     </span>
   );
@@ -107,7 +108,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       <textarea
         ref={ref}
         placeholder={placeholder}
-        className="border-shades-30 relative mt-6 h-28 w-full rounded-lg border py-3.5 pl-4 shadow-sm outline-none focus-within:ring-1 focus-within:ring-blue-100 focus:border-blue-100"
+        className="relative mt-6 h-28 w-full rounded-lg border py-3.5 pl-4 shadow-sm outline-none focus-within:ring-1 focus-within:ring-blue-100 focus:border-blue-100"
         {...props}
       />
     );
@@ -120,8 +121,8 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   maxLength?: number;
   label?: string;
-  StartIcon?: any;
-  EndIcon?: any;
+  StartIcon?: SVGIcon;
+  EndIcon?: SVGIcon;
   asChild?: boolean;
 }
 
@@ -147,10 +148,10 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const textFieldId = `textField-${id}`;
     return (
       <div
-        className={`border-shades-20 relative mt-6 h-10 rounded-lg border focus-within:ring-1 focus:border-blue-100 focus:ring-blue-100 ${
+        className={` relative mt-6 h-10 rounded-lg border focus-within:ring-1 focus:border-blue-100 focus:ring-blue-100 ${
           invalid
-            ? 'border-red-60 bg-red-70/5 border hover:bg-red-100'
-            : 'border-shades-20 bg-primary-white border'
+            ? 'border border-red-500 hover:bg-red-100'
+            : 'border-spacing-9 border'
         } ${className ?? ''}`}
       >
         {label ? (
@@ -160,7 +161,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         <div className="relative h-full w-full">
           {StartIcon ? (
             <StartIcon
-              className="text-shades-20 absolute left-[10px] top-1/2 w-5 -translate-y-1/2"
+              className="absolute left-[10px] top-1/2 w-5 -translate-y-1/2"
               aria-label="start icon"
             />
           ) : null}

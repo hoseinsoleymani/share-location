@@ -1,6 +1,6 @@
 import L from 'leaflet';
 
-const customIcon = (icon: any) =>
+const customIcon = (icon: { dataURL: string }) =>
   new L.Icon({
     iconUrl: icon.dataURL,
     iconRetinaUrl: icon.dataURL,

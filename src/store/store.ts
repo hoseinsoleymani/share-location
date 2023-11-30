@@ -5,7 +5,7 @@ export interface Location {
   name: string;
   position: LatLngTuple[];
   type: string;
-  logo: any[];
+  logo: { dataURL: string }[];
 }
 
 interface LocationState extends Pick<Location, 'position'> {

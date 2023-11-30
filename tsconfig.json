@@ -22,7 +22,7 @@
     "paths": {
       "@components/*": ["src/components/index.ts"],
       "@helpers/*": ["src/helpers/index.ts"],
-      "@types/*": ["src/types/index.ts"],
+      "@type/*": ["src/type/index.ts"],
       "@store/*": ["src/store/index.ts"],
    }
   },

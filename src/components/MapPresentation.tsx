@@ -8,7 +8,11 @@ import { useMapEvents } from 'react-leaflet';
 import { Button, MapContainer, Marker, Popup as LeafletPopup } from './shared';
 import { ShareLocationPopup } from './ShareLocationForm';
 
-const Popup = ({ logo, name, type }: Omit<Location, 'position'>) => {
+const LocationDetailsPopup = ({
+  logo,
+  name,
+  type,
+}: Omit<Location, 'position'>) => {
   const [showModal, setShowModal] = useState(false);
   const { setValue } = useFormContext();
 
@@ -34,11 +38,10 @@ const Popup = ({ logo, name, type }: Omit<Location, 'position'>) => {
 };
 
 const MapMarkers = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  const savePosition = useLocationStore((state) => state.savePosition);
-
   const locations = useLocationStore((state) => state.locations);
+
+  const [showModal, setShowModal] = useState(false);
+  const savePosition = useLocationStore((state) => state.savePosition);
 
   useMapEvents({
     dblclick(ev) {
@@ -52,7 +55,7 @@ const MapMarkers = () => {
     <div>
       {locations.map(({ logo, name, position, type }) => (
         <Marker key={name} position={position[0]}>
-          <Popup logo={logo} name={name} type={type} />
+          <LocationDetailsPopup logo={logo} name={name} type={type} />
         </Marker>
       ))}
 
