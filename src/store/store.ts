@@ -1,16 +1,20 @@
 import type { LatLngTuple } from 'leaflet';
 import { create } from 'zustand';
 
+interface File {
+  dataURL: string;
+}
+
 export interface Location {
   name: string;
   position: LatLngTuple[];
   type: string;
-  logo: { dataURL: string }[];
+  logo: File[];
 }
 
 interface LocationState extends Pick<Location, 'position'> {
   locations: Location[];
-  saveLocation: (logo: never[], name: string, type: string) => void;
+  saveLocation: (logo: File[], name: string, type: string) => void;
   savePosition: (lat: number, lng: number) => void;
 }
 

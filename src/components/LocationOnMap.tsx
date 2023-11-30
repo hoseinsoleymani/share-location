@@ -3,7 +3,7 @@ import type { LatLngTuple } from 'leaflet';
 
 import { FormGroup, MapContainer, Marker } from './shared';
 
-const MapMarker = ({ positions }: { positions: LatLngTuple[] }) => {
+const MapMarkers = ({ positions }: { positions: LatLngTuple[] }) => {
   return (
     <div>
       {positions.map((position) => (
@@ -13,7 +13,7 @@ const MapMarker = ({ positions }: { positions: LatLngTuple[] }) => {
   );
 };
 
-export const PointMap = () => {
+export const LocationOnMap = () => {
   const positions = useLocationStore((state) => state.position);
 
   return (
@@ -24,7 +24,7 @@ export const PointMap = () => {
         zoom={13}
         scrollWheelZoom={false}
       >
-        <MapMarker positions={positions} />
+        <MapMarkers positions={positions} />
       </MapContainer>
     </FormGroup>
   );

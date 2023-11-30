@@ -3,7 +3,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { LocationType } from './LocationType';
-import { PointMap } from './PointMap';
+import { LocationOnMap } from './LocationOnMap';
 import {
   Button,
   Dialog,
@@ -12,7 +12,7 @@ import {
   DialogTitle,
   TextField,
 } from './shared';
-import { UploadLogo } from './UploadLogo';
+import { UploadLocationLogo } from './UploadLocationLogo';
 
 export const ShareLocationForm = () => {
   const saveLocation = useLocationStore((state) => state.saveLocation);
@@ -30,11 +30,11 @@ export const ShareLocationForm = () => {
     <form onSubmit={submitForm} className="flex max-w-xl flex-col gap-y-5">
       <TextField {...register('name')} name="name" label="Location name:" />
 
-      <PointMap />
+      <LocationOnMap />
 
       <LocationType />
 
-      <UploadLogo />
+      <UploadLocationLogo />
 
       <div className="flex justify-end gap-x-4 pt-10">
         <DialogCloseButton

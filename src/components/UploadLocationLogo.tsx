@@ -3,7 +3,7 @@ import type { ImageListType } from 'react-images-uploading';
 
 import { FormGroup, Uploader } from './shared';
 
-export const UploadLogo = () => {
+export const UploadLocationLogo = () => {
   const {
     setValue,
     watch,
