@@ -1,9 +1,8 @@
+import { mergeClassNames } from '@helpers/';
 import { Slot } from '@radix-ui/react-slot';
+import type { SVGIcon } from '@type/';
 import type { ButtonHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
-
-import { mergeClassNames } from '../../../helpers';
-import type { SVGIcon } from '../../../type';
 
 type ButtonVariant = 'primary' | 'secondary';
 type ButtonSize = 'medium' | 'normal' | 'sm';
@@ -75,7 +74,7 @@ function getButtonClassNames(
   return mergeClassNames({
     'rounded-full focus:ring-4 focus:ring-cobalt-15 text-xs md:text-md flex justify-center transition-all w-full':
       true,
-    'text-primary-white bg-blue-90 hover:bg-blue-100 active:bg-blue-100 focus:outline':
+    'bg-blue-90 hover:bg-blue-100 active:bg-blue-100 focus:outline':
       variant === 'primary',
     'border border-shades-20 focus:outline bg-primary-white hover:bg-auxiliary-30 text-primary-black':
       variant === 'secondary',

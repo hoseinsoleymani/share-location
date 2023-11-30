@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useMapEvents } from 'react-leaflet';
 
-import { Button, MapContainer, Marker, Popup as LeafletPopup } from './shared';
+import { Button, MapContainer, Marker, Popup as LeafletPopup } from '../ui';
 import { ShareLocationPopup } from './ShareLocationForm';
 
 const LocationDetailsPopup = ({

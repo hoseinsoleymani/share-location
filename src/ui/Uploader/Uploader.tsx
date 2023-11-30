@@ -42,9 +42,9 @@ export const Uploader = ({ onChange, images, maxNumber }: UploaderProps) => {
           </button>
 
           {imageList.map((image, index) => (
-            <div key={index} className="image-item">
+            <div key={image.dataURL}>
               <img src={image.dataURL} alt="" width="100" />
-              <div className="image-item__btn-wrapper">
+              <div>
                 <button type="button" onClick={() => onImageUpdate(index)}>
                   Update
                 </button>

@@ -7,7 +7,7 @@ export const Label = ({
 }: PropsWithChildren<React.LabelHTMLAttributes<HTMLLabelElement>>) => {
   return (
     <label
-      className="bg-primary-white text-shades-90 inline-block whitespace-nowrap text-sm font-medium"
+      className="inline-block whitespace-nowrap text-sm font-medium"
       {...props}
     >
       {children}

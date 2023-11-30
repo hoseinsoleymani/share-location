@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import type { ImageListType } from 'react-images-uploading';
 
-import { FormGroup, Uploader } from './shared';
+import { FormGroup, Uploader } from '../ui';
 
 export const UploadLocationLogo = () => {
   const {

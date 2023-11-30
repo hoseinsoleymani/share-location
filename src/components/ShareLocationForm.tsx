@@ -11,7 +11,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from './shared';
+} from '../ui';
 import { UploadLocationLogo } from './UploadLocationLogo';
 
 export const ShareLocationForm = () => {

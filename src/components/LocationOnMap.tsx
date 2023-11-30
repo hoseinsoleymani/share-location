@@ -1,7 +1,7 @@
 import { useLocationStore } from '@store/';
 import type { LatLngTuple } from 'leaflet';
 
-import { FormGroup, MapContainer, Marker } from './shared';
+import { FormGroup, MapContainer, Marker } from '../ui';
 
 const MapMarkers = ({ positions }: { positions: LatLngTuple[] }) => {
   return (
