@@ -1,19 +1,27 @@
 import { useFormContext } from 'react-hook-form';
 import type { ImageListType } from 'react-images-uploading';
 
-import { Uploader } from '../shared';
-import { FormGroup } from '../shared/FormGroup/FormGroup';
+import { FormGroup, Uploader } from './shared';
 
 export const UploadLogo = () => {
-  const { setValue, watch } = useFormContext();
+  const {
+    setValue,
+    watch,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext();
 
   const onChange = (imageList: ImageListType) => {
     setValue('logo', imageList);
+    clearErrors('logo');
   };
 
   return (
     <FormGroup label="Location logo:">
       <Uploader images={watch('logo')} maxNumber={69} onChange={onChange} />
+      {errors.logo?.message ? (
+        <span className="text-red-500">please upload a image</span>
+      ) : null}
     </FormGroup>
   );
 };

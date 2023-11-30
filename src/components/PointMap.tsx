@@ -1,9 +1,7 @@
+import { useLocationStore } from '@store/';
 import type { LatLngTuple } from 'leaflet';
-import React from 'react';
 
-import { useLocationStore } from '../../store/store';
-import { MapContainer, Marker } from '../shared';
-import { FormGroup } from '../shared/FormGroup/FormGroup';
+import { FormGroup, MapContainer, Marker } from './shared';
 
 const MapMarker = ({ positions }: { positions: LatLngTuple[] }) => {
   return (

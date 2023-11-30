@@ -1,16 +1,27 @@
+import { useLocationStore } from '@store/';
+import type { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { useLocationStore } from '../../store/store';
-import { Button, DialogCloseButton, TextField } from '../shared';
 import { LocationType } from './LocationType';
 import { PointMap } from './PointMap';
+import {
+  Button,
+  Dialog,
+  DialogCloseButton,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from './shared';
 import { UploadLogo } from './UploadLogo';
 
-export const Form = () => {
+export const ShareLocationForm = () => {
   const saveLocation = useLocationStore((state) => state.saveLocation);
-  const { register, handleSubmit, reset } = useFormContext();
+  const { register, handleSubmit, setError, reset } = useFormContext();
 
   const submitForm = handleSubmit(({ name, type, logo }) => {
+    if (!logo || logo.length === 0)
+      return setError('logo', { message: 'upload image' });
+
     saveLocation(logo, name, type);
     reset();
   });
@@ -35,5 +46,25 @@ export const Form = () => {
         <Button type="submit">Save location</Button>
       </div>
     </form>
+  );
+};
+
+interface ShareLocationPopupProps {
+  showModal: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export const ShareLocationPopup = ({
+  showModal,
+  setShowModal,
+}: ShareLocationPopupProps) => {
+  return (
+    <Dialog open={showModal} onOpenChange={setShowModal}>
+      <DialogContent>
+        <DialogTitle className="mb-6 mt-0">Share location</DialogTitle>
+
+        <ShareLocationForm />
+      </DialogContent>
+    </Dialog>
   );
 };

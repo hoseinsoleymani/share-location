@@ -1,6 +1,5 @@
+import { MapPresentation } from '@components/';
 import { FormProvider, useForm } from 'react-hook-form';
-
-import { MapPresentation } from './components/pages';
 
 const App = () => {
   const methods = useForm({

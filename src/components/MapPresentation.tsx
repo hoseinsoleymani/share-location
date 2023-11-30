@@ -1,20 +1,12 @@
+import type { Location } from '@store/';
+import { useLocationStore } from '@store/';
 import type { LatLngTuple } from 'leaflet';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useMapEvents } from 'react-leaflet';
 
-import type { Location } from '../../store/store';
-import { useLocationStore } from '../../store/store';
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  MapContainer,
-  Marker,
-  Popup as LeafletPopup,
-} from '../shared';
-import { Form } from './Form';
+import { Button, MapContainer, Marker, Popup as LeafletPopup } from './shared';
+import { ShareLocationPopup } from './ShareLocationForm';
 
 const Popup = ({ logo, name, type }: Omit<Location, 'position'>) => {
   const [showModal, setShowModal] = useState(false);
@@ -34,21 +26,14 @@ const Popup = ({ logo, name, type }: Omit<Location, 'position'>) => {
       <br />
       type: {type}
       <div className="flex">
-        <Button variant="secondary">Close</Button>
         <Button onClick={openModal}>Edit</Button>
       </div>
-      <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent>
-          <DialogTitle className="mb-6 mt-0">Share location</DialogTitle>
-
-          <Form />
-        </DialogContent>
-      </Dialog>
+      <ShareLocationPopup setShowModal={setShowModal} showModal={showModal} />
     </LeafletPopup>
   );
 };
 
-const MapMarker = () => {
+const MapMarkers = () => {
   const [showModal, setShowModal] = useState(false);
 
   const savePosition = useLocationStore((state) => state.savePosition);
@@ -71,13 +56,7 @@ const MapMarker = () => {
         </Marker>
       ))}
 
-      <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent>
-          <DialogTitle className="mb-6 mt-0">Share location</DialogTitle>
-
-          <Form />
-        </DialogContent>
-      </Dialog>
+      <ShareLocationPopup setShowModal={setShowModal} showModal={showModal} />
     </div>
   );
 };
@@ -92,7 +71,7 @@ export const MapPresentation = () => {
       zoom={13}
       scrollWheelZoom={false}
     >
-      <MapMarker />
+      <MapMarkers />
     </MapContainer>
   );
 };

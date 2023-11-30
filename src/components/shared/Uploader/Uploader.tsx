@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ImageListType } from 'react-images-uploading';
 import ImageUploading from 'react-images-uploading';
 
